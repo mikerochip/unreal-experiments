@@ -5,7 +5,6 @@
 
 ULoggerComponent::ULoggerComponent()
 {
-	LOG_THIS("LogTickSec=%f", LogTickSec);
 	PrimaryComponentTick.bCanEverTick = true;
 	PrimaryComponentTick.bStartWithTickEnabled = true;
 }
