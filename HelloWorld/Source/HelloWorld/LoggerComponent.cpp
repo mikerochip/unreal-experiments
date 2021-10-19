@@ -1,16 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "LoggerComponent.h"
 #include "HelloWorld.h"
 
-#define LOG_THIS(x, ...) \
-	LOG("%s::%s() " x, \
-	*StaticClass()->GetFName().ToString(), \
-	*FString(__FUNCTION__), \
-	## __VA_ARGS__)
-
-// Sets default values for this component's properties
 ULoggerComponent::ULoggerComponent()
 {
 	LOG_THIS("LogTickSec=%f", LogTickSec);
@@ -18,13 +10,9 @@ ULoggerComponent::ULoggerComponent()
 	PrimaryComponentTick.bStartWithTickEnabled = true;
 }
 
-
 void ULoggerComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	GetOwner()->PrimaryActorTick.bCanEverTick = true;
-	GetOwner()->PrimaryActorTick.bStartWithTickEnabled = true;
 	
 	LOG_THIS("LogTickSec=%f", LogTickSec);
 }
