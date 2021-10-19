@@ -13,7 +13,7 @@ class HELLOWORLD_API ULoggerComponent : public UActorComponent
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float LogTickSec = 30.0f;
+	float LogIntervalSec = 10.0f;
 
 public:	
 	ULoggerComponent();
@@ -25,5 +25,5 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	float RunningTickSec = 0.0f;
+	float RunningSec = 0.0f;
 };

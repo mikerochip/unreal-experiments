@@ -4,33 +4,32 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "BouncerComponent.generated.h"
+#include "PersistenceComponent.generated.h"
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class HELLOWORLD_API UBouncerComponent : public UActorComponent
+class HELLOWORLD_API UPersistenceComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	float MinOffset = -1.0f;
+	float SaveIntervalSec = 10.0f;
 	
 	UPROPERTY(EditAnywhere)
-	float MaxOffset = 1.0f;
-
-	UPROPERTY(EditAnywhere)
-	float Duration = 5.0f;
-
-	UPROPERTY()
-	float RunningSec;
+	AActor* Actor;
 	
 public:
-	UBouncerComponent();
+	UPersistenceComponent();
 
 protected:
 	virtual void BeginPlay() override;
 
 public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+private:
+	const FString FileName = "ActorXform.json";
+	FString FilePath;
+	float RunningSec = 0.0f;
 };
 

@@ -16,7 +16,7 @@ void UBouncerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	const float Control = 0.5f - 0.5f * FMath::Cos(PI * RunningSec);
+	const float Control = 0.5f - 0.5f * FMath::Cos(PI * RunningSec * (1.0f / Duration));
 	
 	AActor* Actor = GetOwner();
 	FVector V = Actor->GetActorLocation();
@@ -24,4 +24,6 @@ void UBouncerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	Actor->SetActorRelativeLocation(V);
 
 	RunningSec += DeltaTime;
+	if (RunningSec > 2.0f * Duration)
+		RunningSec -= 2.0f * Duration;
 }

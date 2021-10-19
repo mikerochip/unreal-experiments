@@ -13,17 +13,17 @@ void ULoggerComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	LOG_THIS("LogTickSec=%f", LogTickSec);
+	LOG_THIS("LogIntervalSec=%f", LogIntervalSec);
 }
 
 void ULoggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	RunningTickSec += DeltaTime;
-	if (RunningTickSec >= LogTickSec)
+	RunningSec += DeltaTime;
+	if (RunningSec >= LogIntervalSec)
 	{
-		LOG_THIS("RunningTickSec=%f LogTickSec=%f", RunningTickSec, LogTickSec);
-		RunningTickSec = 0.0f;
+		LOG_THIS("RunningTickSec=%f LogIntervalSec=%f", RunningSec, LogIntervalSec);
+		RunningSec = 0.0f;
 	}
 }
