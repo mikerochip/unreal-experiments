@@ -4,26 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "LoggerComponent.generated.h"
+#include "BouncerComponent.generated.h"
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class HELLOWORLD_API ULoggerComponent : public UActorComponent
+class HELLOWORLD_API UBouncerComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float LogTickSec = 30.0f;
-
-public:	
-	ULoggerComponent();
+	UPROPERTY(EditAnywhere)
+	float MinOffset = -1.0f;
+	
+	UPROPERTY(EditAnywhere)
+	float MaxOffset = 1.0f;
+	
+public:
+	UBouncerComponent();
 
 protected:
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	float RunningTickSec = 0.0f;
+	float RunningSec;
 };
+
