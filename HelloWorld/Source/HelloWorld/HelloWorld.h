@@ -13,6 +13,6 @@ DECLARE_LOG_CATEGORY_EXTERN(LogHelloWorld, Log, All);
 #define LOG_THIS(x, ...) \
 	LOG("%s::%s() " x, \
 	*StaticClass()->GetFName().ToString(), \
-	*FString(__FUNCTION__), \
+	ANSI_TO_TCHAR(__FUNCTION__), \
 	## __VA_ARGS__)
 
